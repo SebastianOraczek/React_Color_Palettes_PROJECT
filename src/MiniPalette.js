@@ -4,7 +4,6 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = {
     root: {
         backgroundColor: "white",
-        border: "1px solid black",
         borderRadius: "5px",
         padding: "0.5rem",
         position: "relative",
@@ -13,7 +12,7 @@ const styles = {
 
     },
     colors: {
-        height: "150px",
+        height: "140px",
         width: "100%",
         borderRadius: "5px",
         overflow: "hidden"
@@ -38,14 +37,14 @@ const styles = {
         display: "inline-block",
         margin: "0 auto",
         position: "relative",
-        marginBottom: "-3.5px"
+        marginBottom: "-4px"
     }
 };
 
 
 class MiniPalette extends Component {
     render() {
-        const { classes, paletteName, emoji, colors } = this.props;
+        const { classes, paletteName, emoji, colors, handleClick } = this.props;
         const miniColorBoxes = colors.map(color => (
             <div
                 className={classes.miniColor}
@@ -53,13 +52,14 @@ class MiniPalette extends Component {
                 key={color.name}
             />
         ));
+
         return (
-            <div className={classes.root}>
+            <div className={classes.root} onClick={handleClick}>
                 <div className={classes.colors}>
                     {miniColorBoxes}
                 </div>
-                <h5 className={classes.title}>{
-                    paletteName} <span className={classes.emoji}>{emoji}</span>
+                <h5 className={classes.title}>
+                    {paletteName} <span className={classes.emoji}>{emoji}</span>
                 </h5>
             </div>
         )
