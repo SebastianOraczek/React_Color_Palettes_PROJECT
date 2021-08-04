@@ -1,4 +1,4 @@
-export default {
+const styles = {
     palette: {
         height: "97vh",
         display: "flex",
@@ -37,3 +37,5 @@ export default {
         }
     },
 };
+
+export default styles;
