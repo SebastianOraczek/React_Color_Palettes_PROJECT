@@ -108,7 +108,7 @@ class NewPaletteForm extends React.Component {
 
     render() {
         const { classes } = this.props;
-        const { open, newPaletteName, currentColor, newColorName } = this.state;
+        const { open, newPaletteName, currentColor, newColorName, colors } = this.state;
 
         return (
             <div className={classes.root}>
@@ -199,7 +199,7 @@ class NewPaletteForm extends React.Component {
                 >
                     <div className={classes.drawerHeader} />
                     <DraggableColorList
-                        colors={this.state.colors}
+                        colors={colors}
                         deleteColor={this.deleteColor}
                         axis="xy"
                         onSortEnd={this.onSortEnd}
