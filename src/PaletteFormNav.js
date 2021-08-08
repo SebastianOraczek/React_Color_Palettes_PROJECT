@@ -9,6 +9,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from "@material-ui/core/Button"
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link } from "react-router-dom";
+import { withStyles } from '@material-ui/core/styles';
+
+import styles from "./styles/PaletteFormNavStyles";
 
 class PaleteFormNav extends Component {
     constructor(props) {
@@ -41,7 +44,7 @@ class PaleteFormNav extends Component {
         const { newPaletteName } = this.state;
 
         return (
-            <div>
+            <div className={classes.root}>
                 <CssBaseline />
                 <AppBar
                     position="fixed"
@@ -60,8 +63,10 @@ class PaleteFormNav extends Component {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" color="inherit" noWrap>
-                            Create a Palette
+                            Create A Palette
                         </Typography>
+                    </Toolbar>
+                    <div className={classes.navBtns}>
                         <ValidatorForm onSubmit={this.handleSubmit}>
                             <TextValidator
                                 value={newPaletteName}
@@ -74,15 +79,15 @@ class PaleteFormNav extends Component {
                             <Button variant="contained" color="primary" type="submit">
                                 Save Palette
                             </Button>
-                            <Link to="/">
-                                <Button variant="contained" color="secondary">Go Back</Button>
-                            </Link>
                         </ValidatorForm>
-                    </Toolbar>
+                        <Link to="/">
+                            <Button variant="contained" color="secondary">Go Back</Button>
+                        </Link>
+                    </div>
                 </AppBar>
             </div>
         );
     }
 }
 
-export default PaleteFormNav;
+export default withStyles(styles, { withTheme: true })(PaleteFormNav);

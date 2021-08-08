@@ -8,7 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Button from "@material-ui/core/Button"
-import { arrayMove } from 'react-sortable-hoc';
+import arrayMove from 'array-move';
 
 import DraggableColorList from "./DraggableColorList";
 import PaletteFormNav from "./PaletteFormNav"
@@ -102,7 +102,6 @@ class NewPaletteForm extends Component {
             <div className={classes.root}>
                 <PaletteFormNav
                     open={open}
-                    classes={classes}
                     palettes={palettes}
                     handleSubmit={this.handleSubmit}
                     handleDrawerOpen={this.handleDrawerOpen}
@@ -112,9 +111,7 @@ class NewPaletteForm extends Component {
                     variant="persistent"
                     anchor="left"
                     open={open}
-                    classes={{
-                        paper: classes.drawerPaper,
-                    }}
+                    classes={{ paper: classes.drawerPaper }}
                 >
                     <div className={classes.drawerHeader}>
                         <IconButton onClick={this.handleDrawerClose}>
@@ -122,25 +119,29 @@ class NewPaletteForm extends Component {
                         </IconButton>
                     </div>
                     <Divider />
-                    <Typography variant="h4">Design Your Palette</Typography>
-                    <div>
-                        <Button variant="contained" color="primary"
-                            onClick={this.addRandomColor}
-                            disabled={isPaletteFull}
-                        >
-                            Random Color
-                        </Button>
-                        <Button variant="contained" color="secondary"
-                            onClick={this.clearColors}
-                        >
-                            Clear Palette
-                        </Button>
+                    <div className={classes.container}>
+                        <Typography variant="h4" gutterBottom>Design Your Palette</Typography>
+                        <div className={classes.buttons}>
+                            <Button variant="contained" color="secondary"
+                                onClick={this.clearColors}
+                                className={classes.button}
+                            >
+                                Clear Palette
+                            </Button>
+                            <Button variant="contained" color="primary"
+                                onClick={this.addRandomColor}
+                                disabled={isPaletteFull}
+                                className={classes.button}
+                            >
+                                Random Color
+                            </Button>
+                        </div>
+                        <ColorPickerForm
+                            isPaletteFull={isPaletteFull}
+                            addNewColor={this.addNewColor}
+                            colors={colors}
+                        />
                     </div>
-                    <ColorPickerForm
-                        isPaletteFull={isPaletteFull}
-                        addNewColor={this.addNewColor}
-                        colors={colors}
-                    />
                 </Drawer>
                 <main
                     className={classNames(classes.content, {
