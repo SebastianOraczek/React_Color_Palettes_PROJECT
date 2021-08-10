@@ -1,18 +1,56 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Dialog from '@material-ui/core/Dialog';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Avatar from '@material-ui/core/Avatar';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import CheckIcon from "@material-ui/icons/Check";
+import CloseIcon from "@material-ui/icons/Close";
+import blue from "@material-ui/core/colors/blue";
+import red from "@material-ui/core/colors/red"
 
 import MiniPalette from './MiniPalette';
 
 import styles from "./styles/PaletteListStyles";
 
 class PaletteList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            openDeleteDialog: false,
+            deletingId: ""
+        };
+        this.openDialog = this.openDialog.bind(this);
+        this.closeDialog = this.closeDialog.bind(this);
+        this.handleDeletePalette = this.handleDeletePalette.bind(this);
+    };
+
+    openDialog(id) {
+        this.setState({ openDeleteDialog: true, deletingId: id });
+    };
+
+    closeDialog() {
+        this.setState({ openDeleteDialog: false, deletingId: "" });
+    };
+
     goToPalette(id) {
         this.props.history.push(`/palette/${id}`);
     };
 
+    handleDeletePalette() {
+        this.props.deletePalette(this.state.deletingId);
+        this.closeDialog();
+    };
+
     render() {
-        const { palettes, classes, deletePalette } = this.props;
+        const { palettes, classes } = this.props;
+        const { openDeleteDialog } = this.state;
+
         return (
             <div className={classes.root}>
                 <div className={classes.container}>
@@ -20,21 +58,54 @@ class PaletteList extends Component {
                         <h1>React Colors</h1>
                         <Link to="/palette/new">Create Palette</Link>
                     </nav>
-                    <div className={classes.palettes}>
+                    <TransitionGroup className={classes.palettes}>
                         {palettes.map(palette => (
-                            <MiniPalette
-                                {...palette}
+                            <CSSTransition
                                 key={palette.id}
-                                id={palette.id}
-                                handleClick={() => this.goToPalette(palette.id)}
-                                deletePalette={deletePalette}
-                            />
+                                classNames="fade"
+                                timeout={500}
+                            >
+                                <MiniPalette
+                                    {...palette}
+                                    key={palette.id}
+                                    id={palette.id}
+                                    handleClick={() => this.goToPalette(palette.id)}
+                                    openDialog={this.openDialog}
+                                />
+                            </CSSTransition>
                         ))}
-                    </div>
+                    </TransitionGroup>
                 </div>
+                <Dialog
+                    open={openDeleteDialog}
+                    onClose={this.closeDialog}
+                >
+                    <DialogTitle id="delete-dialog-title">Delete This Palette?</DialogTitle>
+                    <List>
+                        <ListItem button onClick={this.handleDeletePalette}>
+                            <ListItemAvatar>
+                                <Avatar style={{ backgroundColor: blue[200], color: blue[700] }}>
+                                    <CheckIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText primary="Delete" />
+                        </ListItem>
+                        <ListItem button>
+                            <ListItemAvatar>
+                                <Avatar style={{ backgroundColor: red[200], color: red[700] }}>
+                                    <CloseIcon />
+                                </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary="Cancel"
+                                onClick={this.closeDialog}
+                            />
+                        </ListItem>
+                    </List>
+                </Dialog>
             </div>
         );
     }
-}
+};
 
 export default withStyles(styles)(PaletteList);
