@@ -8,8 +8,7 @@ const styles = {
         cursor: "pointer",
         "&:hover svg": {
             opacity: "1"
-        }
-
+        },
     },
     colors: {
         height: "140px",

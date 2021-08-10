@@ -1,3 +1,5 @@
+import sizes from "./sizes";
+
 const styles = {
     palette: {
         height: "97vh",
@@ -10,9 +12,9 @@ const styles = {
     },
     goBack: {
         height: "50%",
+        width: "20%",
         display: "inline-block",
         position: "relative",
-        width: "20%",
         margin: "0 auto",
         marginBottom: "-4px",
         backgroundColor: "black",
@@ -34,7 +36,15 @@ const styles = {
             border: "none",
             cursor: "pointer",
             textDecoration: "none",
-        }
+        },
+        [sizes.down("md")]: {
+            height: "20%",
+            width: "50%"
+        },
+        [sizes.down("xs")]: {
+            height: "10%",
+            width: "100%"
+        },
     },
 };
 
