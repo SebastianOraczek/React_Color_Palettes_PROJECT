@@ -90,16 +90,13 @@ class PaletteList extends Component {
                             </ListItemAvatar>
                             <ListItemText primary="Delete" />
                         </ListItem>
-                        <ListItem button>
+                        <ListItem button onClick={this.closeDialog}>
                             <ListItemAvatar>
                                 <Avatar style={{ backgroundColor: red[200], color: red[700] }}>
                                     <CloseIcon />
                                 </Avatar>
                             </ListItemAvatar>
-                            <ListItemText
-                                primary="Cancel"
-                                onClick={this.closeDialog}
-                            />
+                            <ListItemText primary="Cancel" />
                         </ListItem>
                     </List>
                 </Dialog>

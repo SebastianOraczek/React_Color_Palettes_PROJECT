@@ -36,7 +36,10 @@ const styles = {
         textTransform: "uppercase",
         fontSize: "12px",
         display: "flex",
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+        [sizes.down("sm")]: {
+            alignItems: "center",
+        },
     },
     deleteIcon: {
         color: "rgba(0, 0, 0, 0.5)",
