@@ -9,5 +9,5 @@ I have used:
   <li>React.PureComponent to optimizing app.</li>
 </ul>
 
-<p>Link to the course here: https://www.udemy.com/course/modern-react-bootcamp/ </br>
-If you are intrested about my results, I encourege you to visit demo page: https://color-palettes-project-so.herokuapp.com/</p>
+<p>Link to the course here: <a href="https://www.udemy.com/course/modern-react-bootcamp">https://www.udemy.com/course/modern-react-bootcamp/</a> </br>
+If you are intrested about my results, I encourege you to visit demo page: <a href="https://color-palettes-project-so.herokuapp.com/">https://color-palettes-project-so.herokuapp.com/</a></p>
