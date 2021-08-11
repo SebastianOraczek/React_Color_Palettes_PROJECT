@@ -1,7 +1,7 @@
 <h1>Color Palettes</h1>
 <p>Color Palettes is a finally and massive project I have been doing at the end of "The Modern React Bootcamp (Hooks, Context, NextJS, Router)" course by Colt Steel. </br>
 This App is a clone of websites like <a href="https://flatuicolors.com/">Flat UI Colors</a> and <a href="http://materialuicolors.co/?utm_source=launchers">Material UI Colors<a/>.</p>
-<p>I have used:</p>
+I have used:
 <ul>
   <li>JSS syntax to write styling code,</li>
   <li>Material UI to styling components,</li>
