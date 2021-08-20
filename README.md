@@ -1,5 +1,5 @@
 <h1>Color Palettes</h1>
-<p>Color Palettes is a finally and massive project I have been doing at the end of "The Modern React Bootcamp (Hooks, Context, NextJS, Router)" course by Colt Steel. </br>
+<p>Color Palettes is a massive project I have been doing at the end of "The Modern React Bootcamp (Hooks, Context, NextJS, Router)" course by Colt Steel. </br>
 This App is a clone of websites like <a href="https://flatuicolors.com/">Flat UI Colors</a> and <a href="http://materialuicolors.co/?utm_source=launchers">Material UI Colors<a/>.</p>
 I have used:
 <ul>
